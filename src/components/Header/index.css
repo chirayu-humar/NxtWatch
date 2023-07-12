@@ -1,0 +1,41 @@
+.outerHeader {
+  width: 100%;
+  background-color: brown;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.logoContainer {
+  width: 10%;
+}
+.websiteLogo {
+  width: 100px;
+}
+.profileClass {
+  width: 20px;
+  height: 20px;
+}
+.allBtnsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.specialBtn {
+  background-color: transparent;
+  border-style: none;
+}
+.DarkHeader {
+  background-color: #231f20;
+}
+.LightHeader {
+  background-color: #f9f9f9;
+}
+.sumIcon {
+  color: white;
+}
