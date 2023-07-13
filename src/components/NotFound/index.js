@@ -8,9 +8,9 @@ import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
-import GamingVideoItem from '../GamingVideoItem'
+import TrendingVideoItem from '../TrendingVideoItem'
 
-class Gaming extends Component {
+class NotFound extends Component {
   state = {isBannerPresent: true, videosList: [], isLoading: false}
 
   componentDidMount = () => {
@@ -19,17 +19,19 @@ class Gaming extends Component {
   }
 
   FormatTheVideoDetails = object => ({
+    channel: {
+      name: object.channel.name,
+      profileImageUrl: object.channel.profile_image_url,
+    },
     id: object.id,
+    publishedAt: object.published_at,
     thumbnailUrl: object.thumbnail_url,
     title: object.title,
     viewCount: object.view_count,
   })
 
   fetchTrendingVideos = async () => {
-    this.setState({
-      isLoading: true,
-    })
-    const url = 'https://apis.ccbp.in/videos/gaming'
+    const url = 'https://apis.ccbp.in/videos/trending'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -94,24 +96,21 @@ class Gaming extends Component {
                         </div>
                         <div className="firstInnerDivTemp">
                           <img
-                            alt="facebook logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
                           />
                           <img
-                            alt="twitter logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
                           />
                           <img
-                            alt="linked in logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                           />
                         </div>
                         <div className="firstInnerDivTemp">
                           <p>
-                            Enjoy! Now to see your channels and recommendations!
+                            Enjoy! Now to see your channels and recommendations
                           </p>
                         </div>
                       </div>
@@ -121,8 +120,16 @@ class Gaming extends Component {
                   <div className="bottomLargerSecond">
                     {/* banner started */}
                     {isBannerPresent && (
-                      <div className="bannerContainer">
-                        <h1>Gaming</h1>
+                      <div className="bannerContainerNotfound">
+                        <img
+                          className="notFound"
+                          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png"
+                        />
+                        <h1>Page Not Found</h1>
+                        <p>
+                          we are sorry, the page you requested could not be
+                          found
+                        </p>
                       </div>
                     )}
                     {/* banner ended */}
@@ -137,24 +144,6 @@ class Gaming extends Component {
                       </div>
                     )}
                     {/* video container started */}
-                    <div className="videoContainer">
-                      {/* search box ended */}
-                      {/* video items container started */}
-                      <ul className="specialVideoContainer">
-                        {videosList.length === 0 && (
-                          <li>
-                            <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
-                          </li>
-                        )}
-                        {videosList.map(eachItem => (
-                          <GamingVideoItem
-                            key={eachItem.id}
-                            details={eachItem}
-                          />
-                        ))}
-                      </ul>
-                      {/* video items container ended */}
-                    </div>
                     {/* video container ended */}
                   </div>
                   {/* third cont */}
@@ -169,4 +158,4 @@ class Gaming extends Component {
   }
 }
 
-export default Gaming
+export default NotFound

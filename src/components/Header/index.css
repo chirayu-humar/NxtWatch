@@ -25,6 +25,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  list-style: none;
 }
 .specialBtn {
   background-color: transparent;
@@ -38,4 +39,17 @@
 }
 .sumIcon {
   color: white;
+}
+.outerPopup {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+.popupInner1 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

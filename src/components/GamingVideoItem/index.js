@@ -5,10 +5,14 @@ const TrendingVideoItem = props => {
   const {details} = props
   const {id, thumbnailUrl, title, viewCount} = details
   return (
-    <div className="videoItemOuterGaming">
+    <li className="videoItemOuterGaming">
       <div className="thumbnailContainer">
         <Link to={`/videos/${id}`}>
-          <img className="thumbnailImage" src={thumbnailUrl} />
+          <img
+            alt="video thumbnail"
+            className="thumbnailImage"
+            src={thumbnailUrl}
+          />
         </Link>
       </div>
       <div className="detailsContainer">
@@ -24,7 +28,7 @@ const TrendingVideoItem = props => {
           </div>
         </div>
       </div>
-    </div>
+    </li>
   )
 }
 

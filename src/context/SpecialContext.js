@@ -6,6 +6,9 @@ const SpecialContext = React.createContext({
   changeTheMode: () => {},
   addToSavedVideos: () => {},
   removeFromSavedVideos: () => {},
+  reactionList: [],
+  addReaction: () => {},
+  removeReaction: () => {},
 })
 
 export default SpecialContext

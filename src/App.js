@@ -9,10 +9,11 @@ import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import VideoItemDetailsRoute from './components/VideoItemDetailsRoute'
 import SavedVideosRoute from './components/SavedVideosRoute'
+import NotFound from './components/NotFound'
 
 // Replace your code here
 class App extends Component {
-  state = {isDark: false, savedVideosList: []}
+  state = {isDark: false, savedVideosList: [], reactionList: []}
 
   changeTheMode = () => {
     this.setState(prevState => ({
@@ -22,14 +23,37 @@ class App extends Component {
 
   addToSavedVideos = object => {
     console.log(object)
+    this.setState(prevState => ({
+      savedVideosList: [...prevState.savedVideosList, object],
+    }))
   }
 
   removeFromSavedVideos = object => {
     console.log(object)
+    this.setState(prevState => ({
+      savedVideosList: prevState.savedVideosList.filter(
+        each => each.id !== object.id,
+      ),
+    }))
+  }
+
+  addReaction = (id, reactionType) => {
+    const reaction = {id, reactionType}
+    console.log(reaction)
+    this.removeReaction(id)
+    this.setState(prevState => ({
+      reactionList: [...prevState.reactionList, reaction],
+    }))
+  }
+
+  removeReaction = id => {
+    this.setState(prevState => ({
+      reactionList: prevState.reactionList.filter(each => each.id !== id),
+    }))
   }
 
   render() {
-    const {isDark, savedVideosList} = this.state
+    const {isDark, savedVideosList, reactionList} = this.state
     return (
       <SpecialContext.Provider
         value={{
@@ -38,6 +62,9 @@ class App extends Component {
           changeTheMode: this.changeTheMode,
           addToSavedVideos: this.addToSavedVideos,
           removeFromSavedVideos: this.removeFromSavedVideos,
+          reactionList,
+          addReaction: this.addReaction,
+          removeReaction: this.removeReaction,
         }}
       >
         <Switch>
@@ -55,6 +82,8 @@ class App extends Component {
             path="/videos/:id"
             component={VideoItemDetailsRoute}
           />
+          <ProtectedRoute exact path="/not-found" component={NotFound} />
+          <Redirect to="/not-found" />
         </Switch>
       </SpecialContext.Provider>
     )

@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import {AiFillHome, AiTwotoneFire} from 'react-icons/ai'
 import {SiYoutubegaming} from 'react-icons/si'
 import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import TrendingVideoItem from '../TrendingVideoItem'
@@ -30,6 +31,9 @@ class Trending extends Component {
   })
 
   fetchTrendingVideos = async () => {
+    this.setState({
+      isLoading: true,
+    })
     const url = 'https://apis.ccbp.in/videos/trending'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -65,21 +69,29 @@ class Trending extends Component {
                   <div className="bottomLargerFirst">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
-                        <div className="firstInnerDivTemp">
-                          <AiFillHome />
-                          <p>Home</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <AiTwotoneFire />
-                          <p>Trending</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <SiYoutubegaming />
-                          <p>Gaming</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <p>Saved Videos</p>
-                        </div>
+                        <Link to="/">
+                          <div className="firstInnerDivTemp">
+                            <AiFillHome />
+                            <p>Home</p>
+                          </div>
+                        </Link>
+                        <Link to="/trending">
+                          <div className="firstInnerDivTemp">
+                            <AiTwotoneFire />
+                            <p>Trending</p>
+                          </div>
+                        </Link>
+                        <Link to="/gaming">
+                          <div className="firstInnerDivTemp">
+                            <SiYoutubegaming />
+                            <p>Gaming</p>
+                          </div>
+                        </Link>
+                        <Link to="/saved-videos">
+                          <div className="firstInnerDivTemp">
+                            <p>Saved Videos</p>
+                          </div>
+                        </Link>
                       </div>
                       <div className="firstChildSideContainer">
                         <div className="firstInnerDivTemp">
@@ -87,21 +99,24 @@ class Trending extends Component {
                         </div>
                         <div className="firstInnerDivTemp">
                           <img
+                            alt="facebook logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
                           />
                           <img
+                            alt="twitter logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
                           />
                           <img
+                            alt="linked in logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                           />
                         </div>
                         <div className="firstInnerDivTemp">
                           <p>
-                            Enjoy! Now to see your channels and recommendations
+                            Enjoy! Now to see your channels and recommendations!
                           </p>
                         </div>
                       </div>
@@ -130,16 +145,19 @@ class Trending extends Component {
                     <div className="videoContainer">
                       {/* search box ended */}
                       {/* video items container started */}
-                      <div className="specialVideoContainer">
+                      <ul className="specialVideoContainer">
                         {videosList.length === 0 && (
-                          <div>
+                          <li>
                             <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
-                          </div>
+                          </li>
                         )}
                         {videosList.map(eachItem => (
-                          <TrendingVideoItem details={eachItem} />
+                          <TrendingVideoItem
+                            key={eachItem.id}
+                            details={eachItem}
+                          />
                         ))}
-                      </div>
+                      </ul>
                       {/* video items container ended */}
                     </div>
                     {/* video container ended */}

@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import {AiFillHome, AiTwotoneFire} from 'react-icons/ai'
 import {SiYoutubegaming} from 'react-icons/si'
 import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
@@ -37,15 +38,22 @@ class Home extends Component {
     }
     const response = await fetch(url, options)
     console.log(response)
-    const data = await response.json()
-    console.log(data)
-    const newVideosList = data.videos.map(eachItem =>
-      this.FormatTheVideoDetails(eachItem),
-    )
-    this.setState({
-      videosList: newVideosList,
-      isLoading: false,
-    })
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+      const newVideosList = data.videos.map(eachItem =>
+        this.FormatTheVideoDetails(eachItem),
+      )
+      this.setState({
+        videosList: newVideosList,
+        isLoading: false,
+      })
+    } else {
+      this.setState({
+        isReqSuccess: false,
+        isLoading: false,
+      })
+    }
   }
 
   removeTheBanner = () => {
@@ -78,7 +86,7 @@ class Home extends Component {
     return (
       <SpecialContext.Consumer>
         {value => {
-          const {isDark, changeTheMode} = value
+          const {isDark, changeTheMode, isReqSuccess} = value
           return (
             <>
               <Header />
@@ -88,21 +96,29 @@ class Home extends Component {
                   <div className="bottomLargerFirst">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
-                        <div className="firstInnerDivTemp">
-                          <AiFillHome />
-                          <p>Home</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <AiTwotoneFire />
-                          <p>Trending</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <SiYoutubegaming />
-                          <p>Gaming</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <p>Saved Videos</p>
-                        </div>
+                        <Link to="/">
+                          <div className="firstInnerDivTemp">
+                            <AiFillHome />
+                            <p>Home</p>
+                          </div>
+                        </Link>
+                        <Link to="trending">
+                          <div className="firstInnerDivTemp">
+                            <AiTwotoneFire />
+                            <p>Trending</p>
+                          </div>
+                        </Link>
+                        <Link to="/gaming">
+                          <div className="firstInnerDivTemp">
+                            <SiYoutubegaming />
+                            <p>Gaming</p>
+                          </div>
+                        </Link>
+                        <Link to="/saved-videos">
+                          <div className="firstInnerDivTemp">
+                            <p>Saved Videos</p>
+                          </div>
+                        </Link>
                       </div>
                       <div className="firstChildSideContainer">
                         <div className="firstInnerDivTemp">
@@ -110,21 +126,24 @@ class Home extends Component {
                         </div>
                         <div className="firstInnerDivTemp">
                           <img
+                            alt="facebook logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
                           />
                           <img
+                            alt="twitter logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
                           />
                           <img
+                            alt="linked in logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                           />
                         </div>
                         <div className="firstInnerDivTemp">
                           <p>
-                            Enjoy! Now to see your channels and recommendations
+                            Enjoy! Now to see your channels and recommendations!
                           </p>
                         </div>
                       </div>
@@ -134,17 +153,22 @@ class Home extends Component {
                   <div className="bottomLargerSecond">
                     {/* banner started */}
                     {isBannerPresent && (
-                      <div className="bannerContainer">
+                      <div data-testid="banner" className="bannerContainer">
                         {/* first  */}
                         <div className="firstInnerBanner">
                           <div className="firstInnerLogoContainer">
                             <img
+                              alt="nxt watch logo"
                               className="bannerLogo"
                               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
                             />
                           </div>
                           <div>
-                            <button onClick={this.removeTheBanner}>
+                            <button
+                              type="button"
+                              data-testid="close"
+                              onClick={this.removeTheBanner}
+                            >
                               <GrClose />
                             </button>
                           </div>
@@ -152,7 +176,7 @@ class Home extends Component {
                         {/* second  */}
                         <div className="firstInnerBanner">
                           <div className="secondTemp">
-                            <p>dfsdfsd fsdf dfsdf sdfsdf s sdf sd </p>
+                            <p>Buy Nxt Watch Premium</p>
                           </div>
                         </div>
                         {/* third  */}
@@ -182,6 +206,7 @@ class Home extends Component {
                           type="search"
                         />
                         <button
+                          data-testid="searchButton"
                           onClick={this.fetchTheData}
                           className="searchBtn"
                           type="button"
@@ -191,16 +216,41 @@ class Home extends Component {
                       </div>
                       {/* search box ended */}
                       {/* video items container started */}
-                      <div className="specialVideoContainer">
+                      <ul className="specialVideoContainer">
                         {videosList.length === 0 && (
-                          <div>
-                            <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
-                          </div>
+                          <li>
+                            <img
+                              alt="no videos"
+                              className="notFound"
+                              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+                            />
+                            <h1>No Search results found</h1>
+                            <p>
+                              Try different key words or remove search filter
+                            </p>
+                            <button onClick={this.fetchTheData} type="button">
+                              Retry
+                            </button>
+                          </li>
+                        )}
+                        {isReqSuccess && !isLoading && (
+                          <li>
+                            <img
+                              className="notFound"
+                              alt="failure view"
+                              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+                            />
+                            <h1>Oops! Something Went Wrong</h1>
+                            <p>We are having some trouble</p>
+                            <button onClick={this.fetchTheData} type="button">
+                              Retry
+                            </button>
+                          </li>
                         )}
                         {videosList.map(eachItem => (
-                          <VideoItem details={eachItem} />
+                          <VideoItem key={eachItem.id} details={eachItem} />
                         ))}
-                      </div>
+                      </ul>
                       {/* video items container ended */}
                     </div>
                     {/* video container ended */}

@@ -5,11 +5,12 @@ import Cookies from 'js-cookie'
 import {AiFillHome, AiTwotoneFire} from 'react-icons/ai'
 import {SiYoutubegaming} from 'react-icons/si'
 import Loader from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import TrendingVideoItem from '../TrendingVideoItem'
 
-class Trending extends Component {
+class SavedVideosRoute extends Component {
   state = {isBannerPresent: true, videosList: [], isLoading: false}
 
   componentDidMount = () => {
@@ -55,7 +56,7 @@ class Trending extends Component {
     return (
       <SpecialContext.Consumer>
         {value => {
-          const {isDark, changeTheMode} = value
+          const {isDark, savedVideosList} = value
           return (
             <>
               <Header />
@@ -65,21 +66,29 @@ class Trending extends Component {
                   <div className="bottomLargerFirst">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
-                        <div className="firstInnerDivTemp">
-                          <AiFillHome />
-                          <p>Home</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <AiTwotoneFire />
-                          <p>Trending</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <SiYoutubegaming />
-                          <p>Gaming</p>
-                        </div>
-                        <div className="firstInnerDivTemp">
-                          <p>Saved Videos</p>
-                        </div>
+                        <Link to="/">
+                          <div className="firstInnerDivTemp">
+                            <AiFillHome />
+                            <p>Home</p>
+                          </div>
+                        </Link>
+                        <Link to="/trending">
+                          <div className="firstInnerDivTemp">
+                            <AiTwotoneFire />
+                            <p>Trending</p>
+                          </div>
+                        </Link>
+                        <Link to="/gaming">
+                          <div className="firstInnerDivTemp">
+                            <SiYoutubegaming />
+                            <p>Gaming</p>
+                          </div>
+                        </Link>
+                        <Link to="/saved-videos">
+                          <div className="firstInnerDivTemp">
+                            <p>Saved Videos</p>
+                          </div>
+                        </Link>
                       </div>
                       <div className="firstChildSideContainer">
                         <div className="firstInnerDivTemp">
@@ -136,7 +145,7 @@ class Trending extends Component {
                             <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
                           </div>
                         )}
-                        {videosList.map(eachItem => (
+                        {savedVideosList.map(eachItem => (
                           <TrendingVideoItem details={eachItem} />
                         ))}
                       </div>
@@ -156,4 +165,4 @@ class Trending extends Component {
   }
 }
 
-export default Trending
+export default SavedVideosRoute
