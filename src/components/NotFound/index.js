@@ -122,13 +122,14 @@ class NotFound extends Component {
                     {isBannerPresent && (
                       <div className="bannerContainerNotfound">
                         <img
+                          alt="not found"
                           className="notFound"
                           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png"
                         />
                         <h1>Page Not Found</h1>
                         <p>
                           we are sorry, the page you requested could not be
-                          found
+                          found.
                         </p>
                       </div>
                     )}

@@ -18,6 +18,7 @@ class Gaming extends Component {
     channel: {},
     isLoading: false,
     objectToBeSent: {},
+    isReqSuccess: true,
   }
 
   componentDidMount = () => {
@@ -60,18 +61,31 @@ class Gaming extends Component {
     const response = await fetch(url, options)
     const data = await response.json()
     console.log(data)
-    const newVideoDetails = this.FormatTheVideoDetails(data)
-    const channelDetails = this.FormatChannel(data.video_details.channel)
-    console.log(newVideoDetails)
-    this.setState({
-      videosList: newVideoDetails,
-      isLoading: false,
-      channel: channelDetails,
-    })
+    if (response.ok) {
+      const newVideoDetails = this.FormatTheVideoDetails(data)
+      const channelDetails = this.FormatChannel(data.video_details.channel)
+      console.log(newVideoDetails)
+      this.setState({
+        videosList: newVideoDetails,
+        isLoading: false,
+        channel: channelDetails,
+      })
+    } else {
+      this.setState({
+        isReqSuccess: false,
+        isLoading: false,
+      })
+    }
   }
 
   render() {
-    const {isBannerPresent, videosList, isLoading, channel} = this.state
+    const {
+      isBannerPresent,
+      videosList,
+      isLoading,
+      channel,
+      isReqSuccess,
+    } = this.state
     const {
       id,
       thumbnailUrl,
@@ -218,6 +232,35 @@ class Gaming extends Component {
                     {isBannerPresent && (
                       <div className="bannerContainer">
                         <ReactPlayer style={{width: '50px'}} url={videoUrl} />
+                      </div>
+                    )}
+                    {!isReqSuccess && (
+                      <div className="bannerContainer">
+                        {!isDark && (
+                          <img
+                            alt="failure view"
+                            className="notFound"
+                            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+                          />
+                        )}
+                        {isDark && (
+                          <img
+                            alt="failure view"
+                            className="notFound"
+                            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+                          />
+                        )}
+                        <h1>Oops! Something Went Wrong</h1>
+                        <p>
+                          We are having some trouble to complete your request.
+                          Please try again.
+                        </p>
+                        <button
+                          onClick={this.fetchTrendingVideos}
+                          type="button"
+                        >
+                          Retry
+                        </button>
                       </div>
                     )}
                     {/* banner ended */}

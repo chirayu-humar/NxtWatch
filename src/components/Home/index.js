@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
+import OuterHome from './StyledComponents'
 
 class Home extends Component {
   state = {
@@ -90,10 +91,10 @@ class Home extends Component {
           return (
             <>
               <Header />
-              <div className="homeOuter">
-                <div className="bottomLargerContainer">
+              <OuterHome data-testid="home" isDark={isDark}>
+                <div className="bottomLargerContainerHome">
                   {/* first cont */}
-                  <div className="bottomLargerFirst">
+                  <div className="bottomLargerFirstHome">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
                         <Link to="/">
@@ -150,7 +151,7 @@ class Home extends Component {
                     </div>
                   </div>
                   {/* second cont */}
-                  <div className="bottomLargerSecond">
+                  <div className="bottomLargerSecondHome">
                     {/* banner started */}
                     {isBannerPresent && (
                       <div data-testid="banner" className="bannerContainer">
@@ -198,7 +199,7 @@ class Home extends Component {
                       </div>
                     )}
                     {/* video container started */}
-                    <div className="videoContainer">
+                    <div className="videoContainerHome">
                       <div className="searchBox">
                         <input
                           onChange={this.changeTheSearchInput}
@@ -216,7 +217,7 @@ class Home extends Component {
                       </div>
                       {/* search box ended */}
                       {/* video items container started */}
-                      <ul className="specialVideoContainer">
+                      <ul className="specialVideoContainerHome">
                         {videosList.length === 0 && (
                           <li>
                             <img
@@ -233,7 +234,7 @@ class Home extends Component {
                             </button>
                           </li>
                         )}
-                        {isReqSuccess && !isLoading && (
+                        {!isReqSuccess && !isLoading && (
                           <li>
                             <img
                               className="notFound"
@@ -258,7 +259,7 @@ class Home extends Component {
                   {/* third cont */}
                   {/* fourth div */}
                 </div>
-              </div>
+              </OuterHome>
             </>
           )
         }}

@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import TrendingVideoItem from '../TrendingVideoItem'
+import OuterSavedVideos from './StyledComponents'
 
 class SavedVideosRoute extends Component {
   state = {isBannerPresent: true, videosList: [], isLoading: false}
@@ -34,10 +35,10 @@ class SavedVideosRoute extends Component {
           return (
             <>
               <Header />
-              <div className="homeOuter">
-                <div className="bottomLargerContainer">
+              <OuterSavedVideos isDark={isDark} data-testid="savedVideos">
+                <div className="bottomLargerContainerSaved">
                   {/* first cont */}
-                  <div className="bottomLargerFirst">
+                  <div className="bottomLargerFirstTrending">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
                         <Link to="/">
@@ -94,7 +95,7 @@ class SavedVideosRoute extends Component {
                     </div>
                   </div>
                   {/* second cont */}
-                  <div className="bottomLargerSecond">
+                  <div className="bottomLargerSecondSaved">
                     {/* banner started */}
                     {isBannerPresent && (
                       <div className="bannerContainer">
@@ -116,7 +117,7 @@ class SavedVideosRoute extends Component {
                     <div className="videoContainer">
                       {/* search box ended */}
                       {/* video items container started */}
-                      <ul className="specialVideoContainer">
+                      <ul className="specialVideoContainerSaved">
                         {savedVideosList.length === 0 && (
                           <li>
                             <img
@@ -142,7 +143,7 @@ class SavedVideosRoute extends Component {
                   {/* third cont */}
                   {/* fourth div */}
                 </div>
-              </div>
+              </OuterSavedVideos>
             </>
           )
         }}

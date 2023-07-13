@@ -9,9 +9,15 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import TrendingVideoItem from '../TrendingVideoItem'
+import OuterTrending from './StyledComponents'
 
 class Trending extends Component {
-  state = {isBannerPresent: true, videosList: [], isLoading: false}
+  state = {
+    isBannerPresent: true,
+    videosList: [],
+    isLoading: false,
+    isReqSuccess: true,
+  }
 
   componentDidMount = () => {
     console.log('fetch for trending')
@@ -43,19 +49,26 @@ class Trending extends Component {
       },
     }
     const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
-    const newVideosList = data.videos.map(eachItem =>
-      this.FormatTheVideoDetails(eachItem),
-    )
-    this.setState({
-      videosList: newVideosList,
-      isLoading: false,
-    })
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+      const newVideosList = data.videos.map(eachItem =>
+        this.FormatTheVideoDetails(eachItem),
+      )
+      this.setState({
+        videosList: newVideosList,
+        isLoading: false,
+      })
+    } else {
+      this.setState({
+        isLoading: false,
+        isReqSuccess: false,
+      })
+    }
   }
 
   render() {
-    const {isBannerPresent, videosList, isLoading} = this.state
+    const {isBannerPresent, videosList, isLoading, isReqSuccess} = this.state
     return (
       <SpecialContext.Consumer>
         {value => {
@@ -63,10 +76,10 @@ class Trending extends Component {
           return (
             <>
               <Header />
-              <div className="homeOuter">
-                <div className="bottomLargerContainer">
+              <OuterTrending isDark={isDark} data-testid="trending">
+                <div className="bottomLargerContainerTrending">
                   {/* first cont */}
-                  <div className="bottomLargerFirst">
+                  <div className="bottomLargerFirstTrending">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
                         <Link to="/">
@@ -123,7 +136,7 @@ class Trending extends Component {
                     </div>
                   </div>
                   {/* second cont */}
-                  <div className="bottomLargerSecond">
+                  <div className="bottomLargerSecondTrending">
                     {/* banner started */}
                     {isBannerPresent && (
                       <div className="bannerContainer">
@@ -145,10 +158,36 @@ class Trending extends Component {
                     <div className="videoContainer">
                       {/* search box ended */}
                       {/* video items container started */}
-                      <ul className="specialVideoContainer">
+                      <ul className="specialVideoContainerTrending">
                         {videosList.length === 0 && (
                           <li>
                             <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
+                          </li>
+                        )}
+                        {!isReqSuccess && (
+                          <li>
+                            {!isDark && (
+                              <img
+                                alt="failure view"
+                                className="notFound"
+                                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+                              />
+                            )}
+                            {isDark && (
+                              <img
+                                alt="failure view"
+                                className="notFound"
+                                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+                              />
+                            )}
+                            <h1>Oops! Something Went Wrong</h1>
+                            <p>We are having some trouble</p>
+                            <button
+                              onClick={this.fetchTrendingVideos}
+                              type="button"
+                            >
+                              Retry
+                            </button>
                           </li>
                         )}
                         {videosList.map(eachItem => (
@@ -165,7 +204,7 @@ class Trending extends Component {
                   {/* third cont */}
                   {/* fourth div */}
                 </div>
-              </div>
+              </OuterTrending>
             </>
           )
         }}

@@ -11,7 +11,12 @@ import Header from '../Header'
 import GamingVideoItem from '../GamingVideoItem'
 
 class Gaming extends Component {
-  state = {isBannerPresent: true, videosList: [], isLoading: false}
+  state = {
+    isBannerPresent: true,
+    videosList: [],
+    isLoading: false,
+    isReqSuccess: true,
+  }
 
   componentDidMount = () => {
     console.log('fetch for trending')
@@ -38,19 +43,26 @@ class Gaming extends Component {
       },
     }
     const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
-    const newVideosList = data.videos.map(eachItem =>
-      this.FormatTheVideoDetails(eachItem),
-    )
-    this.setState({
-      videosList: newVideosList,
-      isLoading: false,
-    })
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+      const newVideosList = data.videos.map(eachItem =>
+        this.FormatTheVideoDetails(eachItem),
+      )
+      this.setState({
+        videosList: newVideosList,
+        isLoading: false,
+      })
+    } else {
+      this.setState({
+        isLoading: false,
+        isReqSuccess: false,
+      })
+    }
   }
 
   render() {
-    const {isBannerPresent, videosList, isLoading} = this.state
+    const {isBannerPresent, videosList, isLoading, isReqSuccess} = this.state
     return (
       <SpecialContext.Consumer>
         {value => {
@@ -143,7 +155,36 @@ class Gaming extends Component {
                       <ul className="specialVideoContainer">
                         {videosList.length === 0 && (
                           <li>
-                            <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
+                            <img
+                              alt="no videos"
+                              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+                            />
+                          </li>
+                        )}
+                        {isReqSuccess && (
+                          <li>
+                            {!isDark && (
+                              <img
+                                alt="failure view"
+                                className="notFound"
+                                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+                              />
+                            )}
+                            {isDark && (
+                              <img
+                                alt="failure view"
+                                className="notFound"
+                                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+                              />
+                            )}
+                            <h1>Oops! Something Went Wrong</h1>
+                            <p>We are having some trouble</p>
+                            <button
+                              onClick={this.fetchTrendingVideos}
+                              type="button"
+                            >
+                              Retry
+                            </button>
                           </li>
                         )}
                         {videosList.map(eachItem => (
