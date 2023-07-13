@@ -74,7 +74,7 @@ const Header = props => {
                   {close => (
                     <div className="outerPopup">
                       <div className="popupInner1">
-                        <p>Are you sure you want to logout?</p>
+                        <p>Are you sure, you want to logout</p>
                       </div>
                       <div className="popupInner1">
                         <button
@@ -89,7 +89,7 @@ const Header = props => {
                           className="trigger-button"
                           onClick={LogOutFunction}
                         >
-                          Logout
+                          Confirm
                         </button>
                       </div>
                     </div>

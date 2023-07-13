@@ -13,11 +13,6 @@ import TrendingVideoItem from '../TrendingVideoItem'
 class SavedVideosRoute extends Component {
   state = {isBannerPresent: true, videosList: [], isLoading: false}
 
-  componentDidMount = () => {
-    console.log('fetch for trending')
-    this.fetchTrendingVideos()
-  }
-
   FormatTheVideoDetails = object => ({
     channel: {
       name: object.channel.name,
@@ -29,27 +24,6 @@ class SavedVideosRoute extends Component {
     title: object.title,
     viewCount: object.view_count,
   })
-
-  fetchTrendingVideos = async () => {
-    const url = 'https://apis.ccbp.in/videos/trending'
-    const jwtToken = Cookies.get('jwt_token')
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
-    const newVideosList = data.videos.map(eachItem =>
-      this.FormatTheVideoDetails(eachItem),
-    )
-    this.setState({
-      videosList: newVideosList,
-      isLoading: false,
-    })
-  }
 
   render() {
     const {isBannerPresent, videosList, isLoading} = this.state
@@ -96,21 +70,24 @@ class SavedVideosRoute extends Component {
                         </div>
                         <div className="firstInnerDivTemp">
                           <img
+                            alt="facebook logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
                           />
                           <img
+                            alt="twitter logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
                           />
                           <img
+                            alt="linked in logo"
                             className="socialIcons"
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                           />
                         </div>
                         <div className="firstInnerDivTemp">
                           <p>
-                            Enjoy! Now to see your channels and recommendations
+                            Enjoy! Now to see your channels and recommendations!
                           </p>
                         </div>
                       </div>
@@ -139,16 +116,25 @@ class SavedVideosRoute extends Component {
                     <div className="videoContainer">
                       {/* search box ended */}
                       {/* video items container started */}
-                      <div className="specialVideoContainer">
-                        {videosList.length === 0 && (
-                          <div>
-                            <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
-                          </div>
+                      <ul className="specialVideoContainer">
+                        {savedVideosList.length === 0 && (
+                          <li>
+                            <img
+                              className="notFound"
+                              alt="no saved videos"
+                              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+                            />
+                            <h1>No saved videos found</h1>
+                            <p>Save your videos by clicking a button</p>
+                          </li>
                         )}
                         {savedVideosList.map(eachItem => (
-                          <TrendingVideoItem details={eachItem} />
+                          <TrendingVideoItem
+                            key={eachItem.id}
+                            details={eachItem}
+                          />
                         ))}
-                      </div>
+                      </ul>
                       {/* video items container ended */}
                     </div>
                     {/* video container ended */}

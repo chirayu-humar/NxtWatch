@@ -4,7 +4,29 @@ import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
-  state = {username: '', password: '', errorMsg: '', isReqFailed: false}
+  state = {
+    username: '',
+    password: '',
+    errorMsg: '',
+    isReqFailed: false,
+    isTypePassword: true,
+  }
+
+  changeTheInputType = event => {
+    console.log(event.target.id)
+    const {id} = event.target
+    const Element = document.getElementById(id)
+    console.log(Element.checked)
+    if (Element.checked) {
+      this.setState({
+        isTypePassword: false,
+      })
+    } else {
+      this.setState({
+        isTypePassword: true,
+      })
+    }
+  }
 
   fetchTheResponse = async event => {
     event.preventDefault()
@@ -57,12 +79,21 @@ class Login extends Component {
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
+    const {isTypePassword, isReqFailed, errorMsg} = this.state
+    // let passwordInputType
+    // if (isTypePassword){
+    //     passwordInputType = "password",
+    // }else{
+    //     passwordInputType = "text"
+    // }
+
     return (
       <div className="loginOuterDiv">
         <form onSubmit={this.fetchTheResponse} className="loginForm">
           <div className="firstDivForm">
             <div className="logoContainer">
               <img
+                alt="website logo"
                 className="logoImage"
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
               />
@@ -76,21 +107,27 @@ class Login extends Component {
             placeholder="Username"
             onChange={this.changeTheUsername}
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">PASSWORD</label>
           <input
             className="specialInput"
             id="password"
-            type="text"
+            type={isTypePassword ? 'password' : 'text'}
             placeholder="Password"
             onChange={this.changeThePassword}
           />
           <div className="">
-            <input className="specialInput" id="check" type="checkbox" />
+            <input
+              onChange={this.changeTheInputType}
+              className="specialInput"
+              id="check"
+              type="checkbox"
+            />
             <label htmlFor="check">Show Password</label>
           </div>
           <button className="submitBtn" type="submit">
             Login
           </button>
+          {isReqFailed && <p>{errorMsg}</p>}
         </form>
       </div>
     )
