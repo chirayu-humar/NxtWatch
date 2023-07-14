@@ -127,6 +127,7 @@ class SavedVideosRoute extends Component {
                             />
                             <h1>No saved videos found</h1>
                             <p>Save your videos by clicking a button</p>
+                            <p>You can save your videos while watching them</p>
                           </li>
                         )}
                         {savedVideosList.map(eachItem => (

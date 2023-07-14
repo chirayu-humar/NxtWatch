@@ -2,6 +2,7 @@ import './index.css'
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
+import LoginBtn from './StyledComponents'
 
 class Login extends Component {
   state = {
@@ -118,9 +119,9 @@ class Login extends Component {
             />
             <label htmlFor="check">Show Password</label>
           </div>
-          <button className="submitBtn" type="submit">
+          <LoginBtn className="submitBtn" type="submit">
             Login
-          </button>
+          </LoginBtn>
           {isReqFailed && <p>{errorMsg}</p>}
         </form>
       </div>

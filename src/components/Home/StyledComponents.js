@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const OuterHome = styled.div`
+export const OuterHome = styled.div`
   min-height: 100vh;
   flex-grow: 1;
   display: flex;
@@ -9,4 +9,11 @@ const OuterHome = styled.div`
   background-color: ${props => (props.isDark ? '#181818' : '#f9f9f9')};
 `
 
-export default OuterHome
+export const BannerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  background-size: cover;
+  padding: 20px;
+`

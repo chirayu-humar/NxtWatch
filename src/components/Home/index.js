@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
-import OuterHome from './StyledComponents'
+import {OuterHome, BannerContainer} from './StyledComponents'
 
 class Home extends Component {
   state = {
@@ -160,7 +160,10 @@ class Home extends Component {
                   <div className="bottomLargerSecondHome">
                     {/* banner started */}
                     {isBannerPresent && (
-                      <div data-testid="banner" className="bannerContainer">
+                      <BannerContainer
+                        data-testid="banner"
+                        className="bannerContainer"
+                      >
                         {/* first  */}
                         <div className="firstInnerBanner">
                           <div className="firstInnerLogoContainer">
@@ -191,7 +194,7 @@ class Home extends Component {
                           <button className="button">GET IT NOW</button>
                         </div>
                         {/* fourth  */}
-                      </div>
+                      </BannerContainer>
                     )}
                     {/* banner ended */}
                     {isLoading && (

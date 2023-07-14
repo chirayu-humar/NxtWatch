@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import GamingVideoItem from '../GamingVideoItem'
-import OuterVideoDetails from './StyledComponents'
+import {OuterVideoDetails, BlueBtn, WhiteBtn} from './StyledComponents'
 
 class Gaming extends Component {
   state = {
@@ -289,56 +289,56 @@ class Gaming extends Component {
                           <div className="rowContainer">
                             {reactionType === 'DISLIKED' && (
                               <>
-                                <button
+                                <WhiteBtn
                                   style={{color: '#64748b'}}
                                   onClick={LikeThisVideo}
                                   type="button"
                                 >
                                   Like
-                                </button>
-                                <button
+                                </WhiteBtn>
+                                <BlueBtn
                                   onClick={removeTheReaction}
                                   type="button"
                                   style={{color: '#2563eb'}}
                                 >
                                   Dislike
-                                </button>
+                                </BlueBtn>
                               </>
                             )}
                             {reactionType === undefined && (
                               <>
-                                <button
+                                <WhiteBtn
                                   style={{color: '#64748b'}}
                                   onClick={LikeThisVideo}
                                   type="button"
                                 >
                                   Like
-                                </button>
-                                <button
+                                </WhiteBtn>
+                                <WhiteBtn
                                   onClick={DisLikeThisVideo}
                                   type="button"
                                   style={{color: '#64748b'}}
                                 >
                                   Dislike
-                                </button>
+                                </WhiteBtn>
                               </>
                             )}
                             {reactionType === 'LIKED' && (
                               <>
-                                <button
+                                <BlueBtn
                                   onClick={removeTheReaction}
                                   type="button"
                                   style={{color: '#2563eb'}}
                                 >
                                   Like
-                                </button>
-                                <button
+                                </BlueBtn>
+                                <WhiteBtn
                                   type="button"
                                   onClick={DisLikeThisVideo}
                                   style={{color: '#64748b'}}
                                 >
                                   Dislike
-                                </button>
+                                </WhiteBtn>
                               </>
                             )}
                             {!isVideoAlreadySaved && (
