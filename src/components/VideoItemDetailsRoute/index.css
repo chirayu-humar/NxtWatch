@@ -29,17 +29,15 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerVideoDetails {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstVideoDetails {
     width: 20%;
     min-height: auto;
-    background-color: red;
     display: none;
   }
   .bottomLargerSecond {
@@ -113,17 +111,15 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerVideoDetails {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstVideoDetails {
     width: 20vw;
     min-height: auto;
-    background-color: red;
     display: none;
   }
   .bottomLargerSecond {
@@ -203,17 +199,15 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerVideoDetails {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstVideoDetails {
     min-width: 20vw;
     min-height: auto;
-    background-color: red;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -311,17 +305,15 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerVideoDetails {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstVideoDetails {
     min-width: 20vw;
     min-height: auto;
-    background-color: red;
     display: flex;
   }
   .bottomLargerSecond {
@@ -413,17 +405,15 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerVideoDetails {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstVideoDetails {
     min-width: 20vw;
     min-height: auto;
-    background-color: red;
     display: flex;
   }
   .bottomLargerSecond {

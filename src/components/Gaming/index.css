@@ -29,21 +29,18 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerGaming {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstGaming {
     width: 20%;
     min-height: auto;
-    background-color: red;
     display: none;
   }
-  .bottomLargerSecond {
-    background-color: blueviolet;
+  .bottomLargerSecondGaming {
     flex-grow: 1;
   }
   .searchBox {
@@ -64,13 +61,12 @@
     min-height: 10px;
     display: flex;
   }
-  .specialVideoContainer {
+  .specialVideoContainerGaming {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: brown;
   }
 }
 
@@ -105,21 +101,18 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerGaming {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstGaming {
     width: 20vw;
     min-height: auto;
-    background-color: red;
     display: none;
   }
-  .bottomLargerSecond {
-    background-color: blueviolet;
+  .bottomLargerSecondGaming {
     flex-grow: 1;
     display: flex;
     flex-direction: row;
@@ -147,7 +140,7 @@
     min-height: 10px;
     display: flex;
   }
-  .specialVideoContainer {
+  .specialVideoContainerGaming {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -188,23 +181,20 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerGaming {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstGaming {
     min-width: 20vw;
     min-height: auto;
-    background-color: red;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .bottomLargerSecond {
-    background-color: blueviolet;
+  .bottomLargerSecondGaming {
     flex-grow: 1;
   }
   .searchBox {
@@ -225,13 +215,12 @@
     min-height: 10px;
     display: flex;
   }
-  .specialVideoContainer {
+  .specialVideoContainerGaming {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: brown;
   }
   .bottomLargerFirstInner1 {
     width: 100%;
@@ -288,21 +277,18 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerGaming {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstGaming {
     min-width: 20vw;
     min-height: auto;
-    background-color: red;
     display: flex;
   }
-  .bottomLargerSecond {
-    background-color: blueviolet;
+  .bottomLargerSecondGaming {
     flex-grow: 1;
   }
   .searchBox {
@@ -323,13 +309,12 @@
     min-height: 10px;
     display: flex;
   }
-  .specialVideoContainer {
+  .specialVideoContainerGaming {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: brown;
   }
   .bottomLargerFirstInner1 {
     width: 100%;
@@ -386,21 +371,18 @@
   .secondTemp {
     width: 50%;
   }
-  .bottomLargerContainer {
+  .bottomLargerContainerGaming {
     display: flex;
     flex-direction: row;
     min-height: auto;
     flex-grow: 1;
-    background-color: aquamarine;
   }
-  .bottomLargerFirst {
+  .bottomLargerFirstGaming {
     min-width: 20vw;
     min-height: auto;
-    background-color: red;
     display: flex;
   }
-  .bottomLargerSecond {
-    background-color: blueviolet;
+  .bottomLargerSecondGaming {
     flex-grow: 1;
   }
   .searchBox {
@@ -421,13 +403,12 @@
     min-height: 10px;
     display: flex;
   }
-  .specialVideoContainer {
+  .specialVideoContainerGaming {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: brown;
   }
   .bottomLargerFirstInner1 {
     width: 100%;

@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import GamingVideoItem from '../GamingVideoItem'
+import OuterGaming from './StyledComponents'
 
 class Gaming extends Component {
   state = {
@@ -70,10 +71,10 @@ class Gaming extends Component {
           return (
             <>
               <Header />
-              <div className="homeOuter">
-                <div className="bottomLargerContainer">
+              <OuterGaming isDark={isDark} data-testid="gaming">
+                <div className="bottomLargerContainerGaming">
                   {/* first cont */}
-                  <div className="bottomLargerFirst">
+                  <div className="bottomLargerFirstGaming">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
                         <Link to="/">
@@ -130,7 +131,7 @@ class Gaming extends Component {
                     </div>
                   </div>
                   {/* second cont */}
-                  <div className="bottomLargerSecond">
+                  <div className="bottomLargerSecondGaming">
                     {/* banner started */}
                     {isBannerPresent && (
                       <div className="bannerContainer">
@@ -152,7 +153,7 @@ class Gaming extends Component {
                     <div className="videoContainer">
                       {/* search box ended */}
                       {/* video items container started */}
-                      <ul className="specialVideoContainer">
+                      <ul className="specialVideoContainerGaming">
                         {videosList.length === 0 && (
                           <li>
                             <img
@@ -161,7 +162,7 @@ class Gaming extends Component {
                             />
                           </li>
                         )}
-                        {isReqSuccess && (
+                        {!isReqSuccess && (
                           <li>
                             {!isDark && (
                               <img
@@ -201,7 +202,7 @@ class Gaming extends Component {
                   {/* third cont */}
                   {/* fourth div */}
                 </div>
-              </div>
+              </OuterGaming>
             </>
           )
         }}

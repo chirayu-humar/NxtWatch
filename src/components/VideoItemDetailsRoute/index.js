@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 import SpecialContext from '../../context/SpecialContext'
 import Header from '../Header'
 import GamingVideoItem from '../GamingVideoItem'
+import OuterVideoDetails from './StyledComponents'
 
 class Gaming extends Component {
   state = {
@@ -167,10 +168,10 @@ class Gaming extends Component {
           return (
             <>
               <Header />
-              <div className="homeOuter">
-                <div className="bottomLargerContainer">
+              <OuterVideoDetails isDark={isDark} data-testid="videoItemDetails">
+                <div className="bottomLargerContainerVideoDetails">
                   {/* first cont */}
-                  <div className="bottomLargerFirst">
+                  <div className="bottomLargerFirstVideoDetails">
                     <div className="bottomLargerFirstInner1">
                       <div className="firstChildSideContainer">
                         <Link to="/">
@@ -369,7 +370,7 @@ class Gaming extends Component {
                   {/* third cont */}
                   {/* fourth div */}
                 </div>
-              </div>
+              </OuterVideoDetails>
             </>
           )
         }}

@@ -83,11 +83,17 @@ class Home extends Component {
   })
 
   render() {
-    const {isBannerPresent, searchInput, videosList, isLoading} = this.state
+    const {
+      isBannerPresent,
+      searchInput,
+      videosList,
+      isLoading,
+      isReqSuccess,
+    } = this.state
     return (
       <SpecialContext.Consumer>
         {value => {
-          const {isDark, changeTheMode, isReqSuccess} = value
+          const {isDark, changeTheMode} = value
           return (
             <>
               <Header />
@@ -234,7 +240,7 @@ class Home extends Component {
                             </button>
                           </li>
                         )}
-                        {!isReqSuccess && !isLoading && (
+                        {!isReqSuccess && (
                           <li>
                             <img
                               className="notFound"

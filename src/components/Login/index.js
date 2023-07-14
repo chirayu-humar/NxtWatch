@@ -80,12 +80,6 @@ class Login extends Component {
       return <Redirect to="/" />
     }
     const {isTypePassword, isReqFailed, errorMsg} = this.state
-    // let passwordInputType
-    // if (isTypePassword){
-    //     passwordInputType = "password",
-    // }else{
-    //     passwordInputType = "text"
-    // }
 
     return (
       <div className="loginOuterDiv">
